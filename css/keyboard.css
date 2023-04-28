@@ -18,9 +18,10 @@ h3 {
 .textarea {
   display: block;
   margin: 15px auto 30px;
+  padding: 12px;
   width: 500px;
   height: 200px;
-  border-radius: 3px;
+  border-radius: 8px;
   outline-color: #144fc4;
   background: rgb(230, 236, 247);
   font-size: 18px;

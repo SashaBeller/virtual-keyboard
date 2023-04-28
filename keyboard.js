@@ -245,6 +245,10 @@ const keyboard = {
         case "tab":
           keyElement.classList.add("keyboard__key");
           keyElement.innerHTML = creatHTMLIcon("trending_flat");
+          keyElement.addEventListener("click", () => {
+            this.properties.value = this.properties.value + "  ";
+            this._triggerEvent("oninput");
+          });
 
           break;
 
@@ -289,9 +293,15 @@ const keyboard = {
     }
   },
 
-  open(initialValue, oninput) {},
+  start(oninput) {
+    this.properties.value = "";
+    this.eventHandlers.oninput = oninput;
+  },
 };
 
 window.addEventListener("DOMContentLoaded", function () {
   keyboard.init();
+  keyboard.start(function (currentValue) {
+    keyboard.elements.textarea.textContent = currentValue;
+  });
 });
