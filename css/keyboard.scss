@@ -6,7 +6,7 @@
   margin: 0 auto;
   font-family: "Courier New", Courier, monospace;
   font-weight: 100;
-  font-size: 16px;
+  font-size: 20px;
 }
 h1,
 h3 {
@@ -21,12 +21,14 @@ h3 {
   border-radius: 3px;
   outline-color: #144fc4;
   background: rgb(230, 236, 247);
+  font-size: 18px;
 }
 
 .keyboard {
   display: block;
   margin: 0 auto;
   width: 85vw;
+  max-width: 890px;
   padding: 10px 0;
   background: rgb(13, 31, 61);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
@@ -38,6 +40,7 @@ h3 {
 }
 
 .keyboard__key {
+  font-size: 1.2rem;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -62,13 +65,14 @@ h3 {
 }
 
 .keyboard__key--wide {
-  width: 9%;
-  max-width: 100px;
+  width: 13%;
+  max-width: 80px;
 }
 
 .keyboard__key--space {
   width: 25%;
   max-width: 500px;
+  min-width: 125px;
 }
 
 .keyboard__key--indicator::after {

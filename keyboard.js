@@ -196,13 +196,13 @@ const keyboard = {
 
         case "shift":
           keyElement.classList.add("keyboard__key--wide");
-          keyElement.innerHTML = creatHTMLIcon("space_bar");
+          keyElement.innerHTML = creatHTMLIcon("shift");
 
           break;
 
         case "shift1":
           keyElement.classList.add("keyboard__key--wide");
-          keyElement.innerHTML = creatHTMLIcon("space_bar");
+          keyElement.innerHTML = creatHTMLIcon("shift");
 
           break;
 
@@ -288,6 +288,8 @@ const keyboard = {
       }
     }
   },
+
+  open(initialValue, oninput) {},
 };
 
 window.addEventListener("DOMContentLoaded", function () {
