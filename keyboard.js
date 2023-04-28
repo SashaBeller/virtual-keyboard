@@ -1,3 +1,4 @@
+const keyElementByKey = new Map();
 const keyboard = {
   elements: {
     main: null,
@@ -17,20 +18,16 @@ const keyboard = {
   init() {
     const body = document.querySelector("body");
 
-    // Create the section element and set it to the `centeralizer` property using `this`
     this.elements.centeralizer = document.createElement("section");
     this.elements.centeralizer.classList.add("centeralizer");
 
-    // Create the h1 element and set its text content
     this.elements.h1 = document.createElement("h1");
     this.elements.h1.textContent = "Virtual Keyboard";
 
-    // Create the textarea element and set its attributes
     this.elements.textarea = document.createElement("textarea");
     this.elements.textarea.classList.add("body--textarea", "textarea");
     this.elements.textarea.setAttribute("id", "textarea");
 
-    // Create the div elements for the keyboard
     this.elements.main = document.createElement("div");
     this.elements.main.classList.add("keyboard");
     this.elements.keysContainer = document.createElement("div");
@@ -40,12 +37,10 @@ const keyboard = {
     this.elements.keys =
       this.elements.keysContainer.querySelectorAll(".keyboard__key");
 
-    // Create the h3 element and set its text content
     this.elements.h3 = document.createElement("h3");
     this.elements.h3.textContent =
       "Клавиатура создана в операционной системе mac OS";
 
-    // Append the elements to their respective parents using `this`
     this.elements.main.appendChild(this.elements.keysContainer);
     this.elements.centeralizer.appendChild(this.elements.h1);
     this.elements.centeralizer.appendChild(this.elements.textarea);
@@ -84,7 +79,7 @@ const keyboard = {
       "p",
       "[",
       "]",
-      "|",
+      "\\",
       "caps",
       "a",
       "s",
@@ -98,7 +93,7 @@ const keyboard = {
       ";",
       "'",
       "enter",
-      "shift1",
+      "leftShift",
       "z",
       "x",
       "c",
@@ -110,13 +105,13 @@ const keyboard = {
       ".",
       "?",
       "up",
-      "shift",
+      "rightShift",
       "control",
-      "option",
-      "command",
+      "AltLeft",
+      "MetaLeft",
       "space",
-      "command",
-      "option",
+      "MetaRight",
+      "AltRight",
       "left",
       "down",
       "right",
@@ -128,8 +123,9 @@ const keyboard = {
 
     keyLayout.forEach((key) => {
       const keyElement = document.createElement("button");
+      keyElementByKey.set(key, keyElement);
       const insertLineBreak =
-        ["backspace", "|", "enter", "shift"].indexOf(key) !== -1;
+        ["backspace", "\\", "enter", "rightShift"].indexOf(key) !== -1;
 
       keyElement.setAttribute("type", "button");
       keyElement.classList.add("keyboard__key");
@@ -194,25 +190,35 @@ const keyboard = {
 
           break;
 
-        case "shift":
+        case "rightShift":
           keyElement.classList.add("keyboard__key--wide");
           keyElement.innerHTML = creatHTMLIcon("shift");
 
           break;
 
-        case "shift1":
+        case "leftShift":
           keyElement.classList.add("keyboard__key--wide");
           keyElement.innerHTML = creatHTMLIcon("shift");
 
           break;
 
-        case "option":
+        case "AltLeft":
+          keyElement.classList.add("keyboard__key");
+          keyElement.innerHTML = creatHTMLIcon("keyboard_option_key");
+
+          break;
+        case "AltRight":
           keyElement.classList.add("keyboard__key");
           keyElement.innerHTML = creatHTMLIcon("keyboard_option_key");
 
           break;
 
-        case "command":
+        case "MetaLeft":
+          keyElement.classList.add("keyboard__key");
+          keyElement.innerHTML = creatHTMLIcon("keyboard_command_key");
+
+          break;
+        case "MetaRight":
           keyElement.classList.add("keyboard__key");
           keyElement.innerHTML = creatHTMLIcon("keyboard_command_key");
 
@@ -304,4 +310,91 @@ window.addEventListener("DOMContentLoaded", function () {
   keyboard.start(function (currentValue) {
     keyboard.elements.textarea.textContent = currentValue;
   });
+});
+
+const keyboardMap = new Map([
+  // ["IntlRo", "`"],
+  ["KeyA", "a"],
+  ["KeyB", "b"],
+  ["KeyC", "c"],
+  ["KeyD", "d"],
+  ["KeyE", "e"],
+  ["KeyF", "f"],
+  ["KeyG", "g"],
+  ["KeyH", "h"],
+  ["KeyI", "i"],
+  ["KeyJ", "j"],
+  ["KeyK", "k"],
+  ["KeyL", "l"],
+  ["KeyM", "m"],
+  ["KeyN", "n"],
+  ["KeyO", "o"],
+  ["KeyP", "p"],
+  ["KeyQ", "q"],
+  ["KeyR", "r"],
+  ["KeyS", "s"],
+  ["KeyT", "t"],
+  ["KeyU", "u"],
+  ["KeyV", "v"],
+  ["KeyW", "w"],
+  ["KeyX", "x"],
+  ["KeyY", "y"],
+  ["KeyZ", "z"],
+  ["Digit0", "0"],
+  ["Digit1", "1"],
+  ["Digit2", "2"],
+  ["Digit3", "3"],
+  ["Digit4", "4"],
+  ["Digit5", "5"],
+  ["Digit6", "6"],
+  ["Digit7", "7"],
+  ["Digit8", "8"],
+  ["Digit9", "9"],
+  ["Minus", "-"],
+  ["Equal", "="],
+  ["Backspace", "backspace"],
+  ["Tab", "tab"],
+  ["CapsLock", "caps"],
+  ["Enter", "enter"],
+  ["ShiftLeft", "leftShift"],
+  ["Comma", ","],
+  ["Period", "."],
+  ["Slash", "?"],
+  ["ArrowUp", "up"],
+  ["ShiftRight", "rightShift"],
+  ["ControlLeft", "control"],
+  ["AltLeft", "AltLeft"],
+  ["MetaLeft", "MetaLeft"],
+  ["Space", "space"],
+  ["MetaRight", "MetaRight"],
+  ["AltRight", "AltRight"],
+  ["ArrowLeft", "left"],
+  ["ArrowDown", "down"],
+  ["ArrowRight", "right"],
+  ["BracketLeft", "["],
+  ["BracketRight", "]"],
+  ["Backslash", "\\"],
+  ["Semicolon", ";"],
+  ["Quote", "'"],
+  ["Backquote", "`"],
+]);
+
+window.addEventListener("keydown", (event) => {
+  let ourValue = keyboardMap.get(event.code);
+  if (ourValue == null) {
+    console.log("There is no such code in the keyboardMap: ", event.code);
+    return;
+  }
+  let element = keyElementByKey.get(ourValue);
+  if (element == null) {
+    console.log("There is no such element in the keyElementByKey: ", ourValue);
+    return;
+  }
+  element.classList.add("pressed");
+});
+
+window.addEventListener("keyup", (event) => {
+  let ourValue = keyboardMap.get(event.code);
+  let element = keyElementByKey.get(ourValue);
+  element.classList.remove("pressed");
 });

@@ -62,7 +62,8 @@ h3 {
   color: white;
 }
 
-.keyboard__key:active {
+.keyboard__key:active,
+.pressed {
   background: rgba(255, 255, 255, 0.5);
   transition: 0.1s;
 }
