@@ -63,10 +63,15 @@ h3 {
 }
 
 .keyboard__key:active,
+.keyboard__key:active:hover,
 .pressed {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(112, 140, 240, 0.905);
   transition: ease-in-out 0.3s;
   border-radius: 30px;
+}
+
+.keyboard__key:hover {
+  background: rgb(255, 255, 255, 0.5);
 }
 
 .keyboard__key--wide {
