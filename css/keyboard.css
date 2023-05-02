@@ -10,7 +10,8 @@
 }
 
 h1,
-h3 {
+h3,
+h4 {
   text-align: center;
   margin: 15px;
 }
@@ -63,9 +64,15 @@ h3 {
 }
 
 .keyboard__key:active,
+.keyboard__key:active:hover,
 .pressed {
+  background: rgba(112, 140, 240, 0.905);
+  transition: linear 0.05s;
+  border-radius: 30px;
+}
+
+.keyboard__key:hover {
   background: rgba(255, 255, 255, 0.5);
-  transition: 0.1s;
 }
 
 .keyboard__key--wide {
