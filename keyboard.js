@@ -162,10 +162,6 @@ const keyboard = {
 
           buttonElement.addEventListener("click", () => {
             this._toggleCapsLock();
-            // buttonElement.classList.toggle(
-            //   "keyboard__key--activated",
-            //   this.properties.capsLock
-            // );
           });
 
           break;
@@ -366,7 +362,6 @@ window.addEventListener("keydown", (event) => {
 
   if (event.code === "CapsLock") {
     keyboard._toggleCapsLock();
-    console.log("caps is pressed");
   }
 
   let element = buttonByKey.get(event.code);
@@ -393,7 +388,6 @@ document.addEventListener("keydown", function (event) {
   // check if the key corresponds to a symbol in your map
   if (document.activeElement.getAttribute("id") !== "textarea") {
     if (symbolSet.has(key)) {
-      console.log(key);
       switch (key) {
         case "Space":
           keyboard.properties.value += " ";
